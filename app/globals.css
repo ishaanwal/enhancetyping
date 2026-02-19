@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html:not(.dark) {
+  color-scheme: light;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+  background-image: radial-gradient(circle at 10% 10%, rgba(34, 211, 238, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(16, 185, 129, 0.06), transparent 30%);
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-6xl px-4 md:px-6;
+}
+
+.card {
+  @apply rounded-2xl border border-slate-800/90 bg-slate-900/70 shadow-lg shadow-black/30 transition-all duration-300;
+}
+
+.card:hover {
+  @apply border-slate-700/90;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200;
+}
+
+.btn-primary {
+  @apply btn bg-cyan-500 text-slate-950 hover:-translate-y-0.5 hover:bg-cyan-400;
+}
+
+.btn-secondary {
+  @apply btn border border-slate-700 bg-slate-900 text-slate-100 hover:-translate-y-0.5 hover:border-slate-500;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border border-slate-700 px-2 py-1 text-xs;
+}
+
+.soft-alert {
+  @apply rounded-xl border border-amber-500/35 bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-3 text-sm text-amber-100;
+}
+
+.metric-card {
+  @apply rounded-2xl border border-slate-700/80 bg-gradient-to-b from-slate-900 to-slate-950 p-5 shadow-lg shadow-cyan-950/15;
+}
+
+.nav-link-active {
+  @apply rounded-lg border border-cyan-400/35 bg-cyan-500/10 px-2 py-1 text-cyan-200;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html:not(.dark) body {
+  @apply bg-slate-100 text-slate-900;
+  background-image: radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.1), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(14, 165, 233, 0.08), transparent 32%);
+}
+
+html:not(.dark) .card {
+  @apply border-slate-200 bg-white shadow-sm shadow-slate-300/35;
+}
+
+html:not(.dark) .btn-secondary {
+  @apply border-slate-300 bg-white text-slate-800 hover:border-slate-400;
+}
+
+html:not(.dark) .btn-primary {
+  @apply bg-cyan-600 text-white hover:bg-cyan-500;
+}
+
+html:not(.dark) .badge {
+  @apply border-slate-300 text-slate-700;
+}
+
+html:not(.dark) .soft-alert {
+  @apply border-amber-300 bg-amber-100/80 text-amber-900;
+}
+
+html:not(.dark) .metric-card {
+  @apply border-slate-200 bg-white shadow-sm shadow-slate-300/30;
+}
+
+html:not(.dark) .nav-link-active {
+  @apply border-cyan-300 bg-cyan-100 text-cyan-800;
+}
+
+html:not(.dark) .bg-slate-950,
+html:not(.dark) .bg-slate-950\/50,
+html:not(.dark) .bg-slate-950\/60,
+html:not(.dark) .bg-slate-950\/70,
+html:not(.dark) .bg-slate-950\/75,
+html:not(.dark) .bg-slate-950\/90,
+html:not(.dark) .bg-slate-900,
+html:not(.dark) .bg-slate-900\/70,
+html:not(.dark) .bg-slate-900\/80 {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+}
+
+html:not(.dark) .text-slate-100,
+html:not(.dark) .text-slate-200,
+html:not(.dark) .text-slate-300 {
+  color: rgb(15 23 42) !important;
+}
+
+html:not(.dark) .text-slate-400,
+html:not(.dark) .text-slate-500 {
+  color: rgb(71 85 105) !important;
+}
+
+html:not(.dark) .text-cyan-50,
+html:not(.dark) .text-cyan-100,
+html:not(.dark) .text-cyan-200 {
+  color: rgb(14 116 144) !important;
+}
+
+html:not(.dark) .text-cyan-50\/90,
+html:not(.dark) .text-cyan-50\/80,
+html:not(.dark) [class*="text-cyan-50/90"],
+html:not(.dark) [class*="text-cyan-50/80"] {
+  color: rgb(8 145 178) !important;
+}
+
+html:not(.dark) .border-slate-700,
+html:not(.dark) .border-slate-800,
+html:not(.dark) .border-slate-900 {
+  border-color: rgb(203 213 225) !important;
+}
