@@ -1,4 +1,4 @@
-import { TextSource } from "@prisma/client";
+import { Prisma, TextSource } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -84,12 +84,14 @@ export async function POST(request: Request) {
   }
 
   const { actualDurationSeconds: _actualDurationSeconds, ...dataToStore } = parsed.data;
+  const { inputHistory, ...rest } = dataToStore;
 
   const created = await prisma.typingResult.create({
     data: {
       userId: session.user.id,
       displayName: session.user.name || session.user.email || "TypeForge User",
-      ...dataToStore
+      ...rest,
+      inputHistory: (inputHistory ?? Prisma.JsonNull) as Prisma.InputJsonValue
     }
   });
 
