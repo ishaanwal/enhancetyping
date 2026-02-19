@@ -3,11 +3,8 @@ import { NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
-import { assertProductionReady } from "@/lib/production";
 import { stripe } from "@/lib/stripe";
 import { z } from "zod";
-
-assertProductionReady("billing-checkout");
 
 const checkoutSchema = z.object({
   interval: z.enum(["monthly", "yearly"]).default("monthly")

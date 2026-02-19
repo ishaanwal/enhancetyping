@@ -111,7 +111,7 @@ async function seedResults(demoUserId: string, proUserId: string) {
       incorrectChars,
       totalChars,
       consistency: randomBetween(75, 98),
-      inputHistory: null,
+      inputHistory: Prisma.JsonNull,
       createdAt: new Date(Date.now() - i * 1000 * 60 * 32)
     });
   }

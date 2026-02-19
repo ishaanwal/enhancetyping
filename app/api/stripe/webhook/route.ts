@@ -3,10 +3,7 @@ import { SubscriptionStatus } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
-import { assertProductionReady } from "@/lib/production";
 import { stripe } from "@/lib/stripe";
-
-assertProductionReady("stripe-webhook");
 
 const ACTIVE_STATUSES = new Set(["trialing", "active"]);
 

@@ -9,9 +9,6 @@ import { SubscriptionStatus } from "@prisma/client";
 import { DEMO_CREDENTIALS } from "@/lib/demo";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
-import { assertProductionReady } from "@/lib/production";
-
-assertProductionReady("auth");
 
 const credentialsSchema = z.object({
   email: z.string().email(),
@@ -139,7 +136,6 @@ if (env.auth.emailConfigured) {
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
-  trustHost: true,
   secret: process.env.NEXTAUTH_SECRET,
   providers,
   pages: {

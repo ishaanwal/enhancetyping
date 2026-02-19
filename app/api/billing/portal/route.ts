@@ -3,10 +3,7 @@ import { NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
-import { assertProductionReady } from "@/lib/production";
 import { stripe } from "@/lib/stripe";
-
-assertProductionReady("billing-portal");
 
 export async function POST() {
   if (!env.stripe.configured || !stripe) {

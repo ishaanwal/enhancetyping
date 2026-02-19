@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import clsx from "clsx";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-const navLinks = [
+const navLinks: Array<{ href: Route; label: string }> = [
   { href: "/test", label: "Test" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/pricing", label: "Pricing" },

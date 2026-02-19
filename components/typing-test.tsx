@@ -22,6 +22,7 @@ type ResultPayload = {
 };
 
 const DURATIONS = [15, 30, 60, 120] as const;
+type Duration = (typeof DURATIONS)[number];
 
 function countCorrect(text: string, input: string) {
   let correct = 0;
@@ -53,15 +54,16 @@ export function TypingTest({
   hideControls = false,
   disableSourceSwitch = false
 }: TypingTestProps) {
-  const initialDuration = (fixedDuration && fixedDuration > 0 ? fixedDuration : 60) as (typeof DURATIONS)[number];
-  const [duration, setDuration] = useState<(typeof DURATIONS)[number]>(initialDuration);
+  const initialDuration: Duration =
+    fixedDuration && DURATIONS.includes(fixedDuration as Duration) ? (fixedDuration as Duration) : 60;
+  const [duration, setDuration] = useState<Duration>(initialDuration);
   const [source, setSource] = useState<TextSource>("words");
   const [text, setText] = useState("");
   const [author, setAuthor] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [isRunning, setIsRunning] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
-  const [remaining, setRemaining] = useState(initialDuration);
+  const [remaining, setRemaining] = useState<number>(initialDuration);
   const [saveState, setSaveState] = useState<SaveState>({ status: "idle" });
   const [rawSeries, setRawSeries] = useState<number[]>([]);
   const [resultPayload, setResultPayload] = useState<ResultPayload | null>(null);
@@ -139,8 +141,9 @@ export function TypingTest({
 
   useEffect(() => {
     if (fixedDuration && fixedDuration > 0) {
-      setDuration(fixedDuration as (typeof DURATIONS)[number]);
-      setRemaining(fixedDuration);
+      const dur: Duration = DURATIONS.includes(fixedDuration as Duration) ? (fixedDuration as Duration) : 30;
+      setDuration(dur);
+      setRemaining(dur);
     }
   }, [fixedDuration]);
 
