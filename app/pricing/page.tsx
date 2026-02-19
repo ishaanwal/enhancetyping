@@ -9,7 +9,7 @@ export default function PricingPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">Pricing</h1>
-        <p className="mt-1 text-sm text-slate-400">Choose a plan based on how deep you want to train and analyze performance.</p>
+        <p className="mt-1 text-sm text-slate-400">Choose how deeply you want to improve: core training or full personalized guidance.</p>
       </div>
       {!stripeConfigured ? (
         <div className="soft-alert">

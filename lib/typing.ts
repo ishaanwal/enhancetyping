@@ -21,7 +21,7 @@ export const DURATIONS = [15, 30, 60, 120] as const;
 export async function getWordsSnippet(wordCount = 45) {
   const words = await prisma.word.findMany({ select: { value: true } });
   if (!words.length) {
-    return "typeforge demo mode starts instantly and remains stable with no external services configured";
+    return "enhancetyping demo mode starts instantly and remains stable with no external services configured";
   }
 
   const chosen: string[] = [];
@@ -37,7 +37,7 @@ export async function getQuoteSnippet() {
   if (!quotes.length) {
     return {
       content: "Type calmly, strike accurately, and speed will rise with each focused session.",
-      author: "TypeForge"
+      author: "EnhanceTyping"
     };
   }
 

@@ -4,7 +4,7 @@ import { Providers } from "@/components/providers";
 import { TopNav } from "@/components/top-nav";
 
 export const metadata: Metadata = {
-  title: "TypeForge",
+  title: "EnhanceTyping",
   description: "Modern speed typing practice with production-ready subscriptions and analytics."
 };
 

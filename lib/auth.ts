@@ -124,7 +124,7 @@ if (env.auth.emailConfigured) {
           body: JSON.stringify({
             from: process.env.EMAIL_FROM,
             to: identifier,
-            subject: "Your TypeForge sign in link",
+            subject: "Your EnhanceTyping sign in link",
             html: `<p>Use this link to sign in:</p><p><a href=\"${url}\">${url}</a></p>`
           })
         });

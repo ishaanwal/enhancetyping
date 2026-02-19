@@ -8,7 +8,7 @@ export default async function LeaderboardPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-semibold tracking-tight">Leaderboard</h1>
-      <p className="text-sm text-slate-400">Compare your pace against global and friends brackets. Click column headers to sort.</p>
+      <p className="text-sm text-slate-400">See how your speed and accuracy compare, then use insights to close the gap.</p>
       <LeaderboardClient canViewFriends={Boolean(session?.user?.id && session.user.isPremium)} />
     </div>
   );

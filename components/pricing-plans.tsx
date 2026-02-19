@@ -3,12 +3,16 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export function PricingPlans({ stripeConfigured }: { stripeConfigured: boolean }) {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
+  const { data: session } = useSession();
 
   const premiumPrice = billingCycle === "monthly" ? "£5.99" : "£49.99";
   const premiumSuffix = billingCycle === "monthly" ? "/month" : "/year";
+  const isLoggedIn = Boolean(session?.user);
+  const isPremium = Boolean(session?.user?.isPremium);
 
   return (
     <div className="space-y-5">
@@ -40,9 +44,19 @@ export function PricingPlans({ stripeConfigured }: { stripeConfigured: boolean }
             <li>✓ Public leaderboard view</li>
             <li>✓ Guest test mode</li>
           </ul>
-          <Link href="/test" className="btn-secondary mt-5 w-full">
-            Start Free
-          </Link>
+          {!isLoggedIn ? (
+            <Link href="/test" className="btn-secondary mt-5 w-full">
+              Start Free
+            </Link>
+          ) : isPremium ? (
+            <button type="button" disabled className="btn-secondary mt-5 w-full cursor-not-allowed opacity-70">
+              You are on Premium
+            </button>
+          ) : (
+            <button type="button" disabled className="btn-secondary mt-5 w-full cursor-not-allowed border-cyan-400/40 bg-cyan-500/10 text-cyan-100">
+              Current Plan
+            </button>
+          )}
         </article>
 
         <article className="relative overflow-hidden rounded-2xl border border-cyan-400/40 bg-gradient-to-b from-cyan-500/15 to-slate-950 p-6 shadow-xl shadow-cyan-950/30">
@@ -57,9 +71,13 @@ export function PricingPlans({ stripeConfigured }: { stripeConfigured: boolean }
             <li>✓ Custom word lists and goals</li>
             <li>✓ Friends leaderboard + follows</li>
           </ul>
-          {stripeConfigured ? (
+          {isPremium ? (
+            <button type="button" disabled className="btn-primary mt-5 w-full cursor-not-allowed opacity-80">
+              Current Plan
+            </button>
+          ) : stripeConfigured ? (
             <Link href="/profile" className="btn-primary mt-5 w-full">
-              Get Premium
+              Upgrade to Premium
             </Link>
           ) : (
             <Link href="/profile" className="btn-primary mt-5 w-full">

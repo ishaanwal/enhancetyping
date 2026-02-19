@@ -127,8 +127,8 @@ export function TypingTest({
         setAuthor(null);
       }
     } catch {
-      setText("typeforge demo mode keeps running even when text loading fails");
-      setAuthor("TypeForge");
+      setText("enhancetyping demo mode keeps running even when text loading fails");
+      setAuthor("EnhanceTyping");
     }
 
     requestAnimationFrame(() => textareaRef.current?.focus());

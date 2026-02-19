@@ -46,7 +46,7 @@ export async function GET() {
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv",
-      "Content-Disposition": "attachment; filename=typeforge-results.csv"
+      "Content-Disposition": "attachment; filename=enhancetyping-results.csv"
     }
   });
 }

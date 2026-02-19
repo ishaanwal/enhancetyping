@@ -89,7 +89,7 @@ export async function POST(request: Request) {
   const created = await prisma.typingResult.create({
     data: {
       userId: session.user.id,
-      displayName: session.user.name || session.user.email || "TypeForge User",
+      displayName: session.user.name || session.user.email || "EnhanceTyping User",
       ...rest,
       inputHistory: (inputHistory ?? Prisma.JsonNull) as Prisma.InputJsonValue
     }

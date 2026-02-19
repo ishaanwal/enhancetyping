@@ -31,8 +31,8 @@ export default async function ProfilePage() {
     }
   });
 
-  const displayName = user?.name || session.user.name || "TypeForge User";
-  const displayEmail = user?.email || session.user.email || "unknown@typeforge.local";
+  const displayName = user?.name || session.user.name || "EnhanceTyping User";
+  const displayEmail = user?.email || session.user.email || "unknown@enhancetyping.local";
   const initials = displayName
     .split(" ")
     .map((part) => part[0])
@@ -131,7 +131,7 @@ export default async function ProfilePage() {
             <tbody>
               <tr className="border-b border-slate-900/80">
                 <td className="py-2 pr-2 text-slate-400">{renewalDate === "Not subscribed" ? "-" : renewalDate}</td>
-                <td className="py-2 pr-2">{user?.isPremium ? "TypeForge Premium" : "No active invoices"}</td>
+                <td className="py-2 pr-2">{user?.isPremium ? "EnhanceTyping Premium" : "No active invoices"}</td>
                 <td className="py-2 pr-2">{user?.isPremium ? nextCharge : "£0"}</td>
                 <td className="py-2 pr-2">
                   <span className={`badge ${user?.isPremium ? "border-emerald-400/40 text-emerald-200" : "border-slate-600 text-slate-300"}`}>

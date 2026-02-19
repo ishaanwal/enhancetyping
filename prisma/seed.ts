@@ -10,7 +10,7 @@ async function seedUsers() {
   const demoPasswordHash = await bcrypt.hash("demo123", 10);
 
   const demoUser = await prisma.user.upsert({
-    where: { email: "demo@typeforge.local" },
+    where: { email: "demo@enhancetyping.local" },
     update: {
       name: "Demo User",
       passwordHash: demoPasswordHash,
@@ -18,7 +18,7 @@ async function seedUsers() {
       subscriptionStatus: SubscriptionStatus.active
     },
     create: {
-      email: "demo@typeforge.local",
+      email: "demo@enhancetyping.local",
       name: "Demo User",
       passwordHash: demoPasswordHash,
       isPremium: true,
@@ -27,7 +27,7 @@ async function seedUsers() {
   });
 
   const proUser = await prisma.user.upsert({
-    where: { email: "pro@typeforge.local" },
+    where: { email: "pro@enhancetyping.local" },
     update: {
       name: "Pro Sprinter",
       passwordHash: demoPasswordHash,
@@ -35,7 +35,7 @@ async function seedUsers() {
       subscriptionStatus: SubscriptionStatus.active
     },
     create: {
-      email: "pro@typeforge.local",
+      email: "pro@enhancetyping.local",
       name: "Pro Sprinter",
       passwordHash: demoPasswordHash,
       isPremium: true,

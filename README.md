@@ -1,6 +1,6 @@
-# TypeForge
+# EnhanceTyping
 
-TypeForge is a Next.js 14 typing platform with production-grade account auth, leaderboards, and Stripe subscriptions.
+EnhanceTyping is a Next.js 14 typing platform with production-grade account auth, leaderboards, and Stripe subscriptions.
 
 ## Tech Stack
 

@@ -6,7 +6,7 @@ export default function TestPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Typing Test</h1>
-          <p className="mt-1 text-sm text-slate-400">Focus on accuracy first, then lift speed while keeping rhythm steady.</p>
+          <p className="mt-1 text-sm text-slate-400">Build speed by staying accurate: each run shows what to improve next.</p>
         </div>
         <span className="badge border-cyan-400/40 text-cyan-200">Esc to restart instantly</span>
       </div>

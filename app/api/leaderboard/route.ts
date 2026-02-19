@@ -19,6 +19,40 @@ function getWindowStart(window: "daily" | "weekly" | "all") {
   return null;
 }
 
+function buildFallbackEntries(input: {
+  duration: number;
+  source: "words" | "quote";
+  window: "daily" | "weekly" | "all";
+  scope: "global" | "friends";
+}) {
+  const names =
+    input.scope === "friends"
+      ? ["Ava Friend", "Leo Friend", "Maya Friend", "Noah Friend", "Zara Friend", "Kai Friend", "Liam Friend", "Ivy Friend"]
+      : ["RapidRaven", "KeySage", "SwiftMint", "NeonType", "PulsePilot", "ByteBlaze", "NovaKeys", "TurboTone", "DriftType", "AlphaRhythm"];
+
+  const sourceOffset = input.source === "quote" ? -7 : 0;
+  const windowOffset = input.window === "daily" ? 3 : input.window === "weekly" ? 1 : 0;
+  const durationOffset = input.duration === 15 ? 6 : input.duration === 30 ? 3 : input.duration === 60 ? 0 : -2;
+  const baseline = 88 + sourceOffset + windowOffset + durationOffset;
+
+  return names.slice(0, 8).map((name, idx) => {
+    const wpm = Math.max(48, baseline - idx * 2.8 + (idx % 2 === 0 ? 1.4 : -1.1));
+    const accuracy = Math.min(99.6, 97.9 - idx * 0.45);
+    const rawWpm = wpm + 5.2 - idx * 0.2;
+    const consistency = Math.max(76, 95.5 - idx * 1.1);
+    return {
+      rank: idx + 1,
+      name,
+      wpm: Number(wpm.toFixed(1)),
+      rawWpm: Number(rawWpm.toFixed(1)),
+      accuracy: Number(accuracy.toFixed(1)),
+      consistency: Number(consistency.toFixed(1)),
+      errors: 1 + (idx % 4),
+      createdAt: new Date(Date.now() - idx * 1000 * 60 * 45)
+    };
+  });
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const parsed = schema.safeParse({
@@ -106,5 +140,15 @@ export async function GET(request: Request) {
       createdAt: row.createdAt
     }));
 
-  return NextResponse.json({ entries });
+  if (entries.length > 0) {
+    return NextResponse.json({ entries });
+  }
+
+  const fallbackEntries = buildFallbackEntries({
+    duration: query.duration,
+    source: query.source,
+    window: query.window,
+    scope: query.scope
+  });
+  return NextResponse.json({ entries: fallbackEntries, message: "Showing sample leaderboard data." });
 }

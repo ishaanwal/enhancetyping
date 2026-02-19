@@ -38,14 +38,28 @@ export function LeaderboardClient({ canViewFriends }: { canViewFriends: boolean 
 
   const fetchBoard = async () => {
     setLoading(true);
-    const response = await fetch(
-      `/api/leaderboard?mode=standard&duration=${duration}&source=${source}&window=${windowRange}&scope=${scope}`,
-      { cache: "no-store" }
-    );
-    const json = await response.json();
-    setEntries(json.entries || []);
-    setMessage(json.message || "");
-    setLoading(false);
+    try {
+      const response = await fetch(
+        `/api/leaderboard?mode=standard&duration=${duration}&source=${source}&window=${windowRange}&scope=${scope}`,
+        { cache: "no-store" }
+      );
+      const text = await response.text();
+      const json = text ? (JSON.parse(text) as { entries?: Entry[]; message?: string }) : {};
+
+      if (!response.ok) {
+        setEntries([]);
+        setMessage(json.message || "Unable to load leaderboard right now.");
+        return;
+      }
+
+      setEntries(json.entries || []);
+      setMessage(json.message || "");
+    } catch {
+      setEntries([]);
+      setMessage("Unable to load leaderboard right now.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 export const DEMO_CREDENTIALS = {
-  email: "demo@typeforge.local",
+  email: "demo@enhancetyping.local",
   password: "demo123"
 };
 
