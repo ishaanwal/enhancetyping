@@ -1,12 +1,11 @@
-export const dynamic = "force-dynamic";
-
-
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { authOptions } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
 
 const flagSchema = z.object({
   resultId: z.string().cuid(),

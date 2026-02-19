@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email?.toLowerCase();

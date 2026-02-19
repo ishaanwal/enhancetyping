@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "prisma generate",
     "validate:prod": "node scripts/validate-production.mjs",
     "prisma:generate": "set -a && . ./.env.local && set +a && prisma generate",
     "prisma:migrate": "set -a && . ./.env.local && set +a && prisma migrate dev",
